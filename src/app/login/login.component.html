@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" >
+<div class="row">
+    <div class="col-md-6 mx-auto p-0">
+        <div class="card">
+            <div class="login-box">
+                <div class="login-snip1"> 
+                    <div class="login-space">
+                       
+                        <div class="login">
+                            <div class="group"> <label for="user" class="label" style="font-size: x-large;;text-align: center;">Login</label></div>
+                            <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" formControlName="userName" form placeholder="Enter your Email"> </div>
+                            <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" formControlName="password" data-type="password" placeholder="Enter your password"> </div>
+                            <div class="group"> <input type="submit"  class="button"  (click)=" login()" value="Sign In"> </div>
+
+                            <div class="group"> <a  [routerLink]="['/register']" routerLinkActive="router-link-active" class="button" style="text-align: center ;">Register User</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+</form>
