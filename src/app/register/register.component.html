@@ -12,6 +12,8 @@
                             <div class="group"> <label for="pass" class="label">Email Address</label> <input id="pass" [class.is-invalid] = "registerForm.get('email').invalid && registerForm.get('email').touched" type="email" formControlName="email" class="input" placeholder="Enter your email address"> 
                                 </div>
                             <div class="group"> <button   class="button" style="text-align: center ;"  (click)="submit()">Register User</button></div>
+                            <div><P style="text-align: center;">Or</P></div>
+                            <div class="group"> <a  [routerLink]="['/Login']" routerLinkActive="router-link-active" class="button" style="text-align: center ;">Login</a></div>
                             <div class="hr"></div>
                         </div>
                     </div>
