@@ -1,0 +1,44 @@
+<br><div class ="container">
+  
+    <div class = "container">
+        <div class="row">
+        <div class="col-md-8" style="text-align: center;">
+            <b>Product Added</b>
+        </div>
+    </div>
+    </div><br><br>
+    <form [formGroup]= "productForm">
+    <div class="row">
+      
+      
+        <div class="col-md-3">
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <input type="text" matInput placeholder="Product Name" formControlName="productName">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <input type="number" matInput placeholder="quantity" formControlName="quantity">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <input type="number" matInput placeholder="Price for the one Item" formControlName="price">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+               <button class="btn btn-success"  [disabled]="!productForm.valid" (click)="submit()">submit</button>
+            </div>
+        </div>
+    </div>
+    </form>
+    </div>

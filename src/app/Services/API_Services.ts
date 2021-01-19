@@ -16,38 +16,46 @@ export class ApiServices {
   get isLoggedIn() {
     return this.loggedIns.asObservable();
   }
- 
+    // get User
     getUser(): Observable<any> {
-      const url = `${this.baseUri}/user/GetUser`;
+      const url = `${this.baseUri}/user/getUser`;
+      return this.http.get(url)
+        .pipe(
+          catchError(this.errorMgmt)
+        );
+    } 
+    // get Product
+    getProduct(): Observable<any> {
+      const url = `${this.baseUri}/product/getProduct`;
       return this.http.get(url)
         .pipe(
           catchError(this.errorMgmt)
         );
     }
-    uploadFile(data): Observable<any> {
-        const url = `${this.baseUri}/user/upload`;
-        return this.http.post(url, data, {
-          reportProgress: true,
-          observe: 'events'
-        })
-          .pipe(
-            catchError(this.errorMgmt)
-          );
-    
-      }
+    // create User
     createuser(data): Observable<any> {
         
           const url = `${this.baseUri}/user/register`;
-          return this.http.post(url, data).pipe(catchError(this.errorMgmt));
-        
-         
+          return this.http.post(url, data).pipe(catchError(this.errorMgmt));  
       }
-      updateUser(data,id): Observable<any> {
+
+
+        // Delete Product
+    deleteProduct(id): Observable<any> {
         
-        const url = `${this.baseUri}/user/register/${id}`;
-        return this.http.put(url, data).pipe(catchError(this.errorMgmt));
-      
-       
+      const url = `${this.baseUri}/product/deleteProduct/${id}`;
+      return this.http.delete(url).pipe(catchError(this.errorMgmt));  
+  }
+      // create Product
+      createProduct(data,id): Observable<any> { 
+        if(!!id) {
+          const url = `${this.baseUri}/product/updateproduct/${id}`;
+          return this.http.put(url, data).pipe(catchError(this.errorMgmt));
+        }
+        else {
+          const url = `${this.baseUri}/product/addproduct`;
+          return this.http.post(url, data).pipe(catchError(this.errorMgmt)); 
+        }  
     }
       loggedin() {
         if (localStorage.getItem('token') === localStorage.getItem('authToken')) {

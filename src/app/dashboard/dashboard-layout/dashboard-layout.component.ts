@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiServices } from 'src/app/Services/API_Services';
 
 @Component({
@@ -10,22 +11,35 @@ import { ApiServices } from 'src/app/Services/API_Services';
   styleUrls: ['./dashboard-layout.component.scss']
 })
 export class DashboardLayoutComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email','Usertype'];
+  displayedColumns: string[] = ['name', 'quantity','Price','total',"action"];
   dataSource : any
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private serviceProvider : ApiServices, private  router : Router) { }
+  constructor(private serviceProvider : ApiServices, private  _router : Router
+   , private toastar : ToastrService) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getProduct();
   }
-  getUser(){
-    this.serviceProvider.getUser().subscribe(result => {
+  getProduct(){
+    this.serviceProvider.getProduct().subscribe(result => {
       this.dataSource = new MatTableDataSource<any>(result);
       this.dataSource.paginator = this.paginator;
     })
   }
-  navigate(data){
-    alert('asaaa')
-    this.router.navigate([`/Dashboard/Userdetails/${data}`])
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+   }
+
+   addProduct() {
+    this._router.navigate(['/Dashboard/product']);
+  }
+
+  delete(data){
+    this.serviceProvider.deleteProduct(data).subscribe(result => {
+      this.toastar.success("Deleted SuccesFully")
+      this.getProduct()
+    })
   }
 }

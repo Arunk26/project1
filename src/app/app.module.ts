@@ -15,12 +15,17 @@ import { LoginComponent } from './login/login.component';
 import { ApiServices } from './Services/API_Services';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { ErrorComponent } from './error/error.component';
+import { ProductComponent } from './product/product.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    ErrorComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
